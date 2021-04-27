@@ -1,0 +1,45 @@
+<h2>Student Form</h2>
+
+<form [formGroup]="studentForm" (ngSubmit)="Submit()">
+<table border="2">
+
+<tr class="form-group">
+    <td for="firstName"> Name  :: </td>
+    <td><input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.Name.errors }" /></td>
+ 
+    <div *ngIf="submitted && form.Name.errors" class="invalid-feedback">
+      <div *ngIf="form.Name.errors.required"> Name is required</div>
+    </div>
+  </tr>
+
+<tr class="form-group">
+    <td for="firstName"> Address  :: </td>
+    <td><input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.address.errors }" /></td>
+ 
+    <div *ngIf="submitted && form.address.errors" class="invalid-feedback">
+      <div *ngIf="form.address.errors.required"> Address is required</div>
+    </div>
+  </tr>
+
+  <tr class="form-group">
+ <td for="firstName"> Gender  :: </td>
+ <td>
+   <input type="radio" name="gender" formControlName="gender" checked/>
+   <label class="form-check-label" for="female">Female</label>
+   <input type="radio" name="gender" formControlName="gender"/>
+   <label class="form-check-label" for="male">Male</label>
+</td>
+    <div *ngIf="submitted && form.gender.errors" class="invalid-feedback">
+      <div *ngIf="form.address.errors.required"> gender is required</div>
+    </div>
+ 
+</tr>
+
+<tr class="form-group">
+<div class="center">
+    <button>Add Student</button>
+  </div>  
+</tr>
+
+</table>
+</form>
