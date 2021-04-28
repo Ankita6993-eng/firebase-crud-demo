@@ -30,10 +30,7 @@ submitted = false;
     this.studentService.form.value.studentdetail = this.studentdetail;
     let data = this.studentService.form.value;
     console.log("data",data)
-    this.studentService.createstudent(data).then((res:any) => {
-      alert("Student Successfully created...")
-      
-    });
+    this.studentService.form.reset()
   }
 
 
