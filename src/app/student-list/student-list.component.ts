@@ -13,12 +13,12 @@ export class StudentListComponent implements OnInit {
   constructor(public studentService: StudentService) { }
 
   ngOnInit(): void {
-    this.getstudentlist();
+    this.getstudentdetail()
   }
 
   studentsdetail:any;
 
-   getstudentlist = () =>
+   getstudentdetail = () =>
     this.studentService
       .getstudent()
       .subscribe((res:any) => (this.studentsdetail = res));
