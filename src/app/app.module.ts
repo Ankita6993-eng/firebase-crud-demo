@@ -8,12 +8,14 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import {StudentService} from './student.service'
+import {StudentService} from './student.service';
+import { StudentListComponent } from './student-list/student-list.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentDetailComponent
+    StudentDetailComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
