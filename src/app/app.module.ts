@@ -24,7 +24,6 @@ import { StudentListComponent } from './student-list/student-list.component'
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule
-  
   ],
   providers: [StudentService],
   bootstrap: [AppComponent]

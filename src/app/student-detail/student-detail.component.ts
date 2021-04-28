@@ -32,6 +32,4 @@ submitted = false;
     console.log("data",data)
     this.studentService.form.reset()
   }
-
-
 }
