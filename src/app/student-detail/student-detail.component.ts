@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {StudentService} from '../student.service'
+import { StudentModal } from '../student-modal'
+import { NgForm } from "@angular/forms";
 
 
 @Component({
@@ -11,25 +13,27 @@ import {StudentService} from '../student.service'
 export class StudentDetailComponent implements OnInit {
 studentForm: FormGroup|any;
 submitted = false;
+  constructor(public studentService: StudentService) { }
 
+  ngOnInit(): void {}
 
-  constructor(private formBuilder: FormBuilder) { 
-    this.studentForm = this.formBuilder.group({
-            Name: ['', Validators.required],
-            gender: ['', Validators.required],
-            address: ['', Validators.required]
-        });
+  studentdetail = [''];
+
+  addStudent = (stud:any) => this.studentdetail.push(stud);
+
+    removeStudent = (stud:any) => {
+    let index = this.studentdetail.indexOf(stud);
+    if (index > -1) this.studentdetail.splice(index, 1);
+  };
+
+   onSubmit() {
+    this.studentService.form.value.studentdetail = this.studentdetail;
+    let data = this.studentService.form.value;
+
+    this.studentService.createstudent(data).then((res:any) => {
+      alert("Student Successfully created...")
+    });
   }
 
-  ngOnInit(): void {
-  }
-  get form() { return this.studentForm.controls; }
-
-   Submit() {
-        this.submitted = true;
-       if (this.studentForm.invalid) {
-            return;
-        }
-   }    
 
 }

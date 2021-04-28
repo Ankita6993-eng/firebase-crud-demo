@@ -1,31 +1,48 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { StudentModal } from './student-modal'
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-private dbPath = '/student';
+  studentForm: FormGroup|any;
+submitted = false;
 
- tutorialsRef: AngularFirestoreCollection<StudentModal> ;
 
-  constructor(private db: AngularFirestore) {
-    this.tutorialsRef = db.collection(this.dbPath);
+  constructor(private firestore: AngularFirestore) {
+
    }
-
-   getAll(): AngularFirestoreCollection<StudentModal> {
-    return this.tutorialsRef;
+   form = new FormGroup({
+    name: new FormControl(""),
+    age: new FormControl(""),
+    address: new FormControl("")
+  });
+ createstudent(data:any) {
+    return new Promise<any>((resolve, reject) => {
+      this.firestore
+        .collection("students")
+        .add(data)
+        .then(res => {}, err => reject(err));
+    });
   }
-  create(StudentModal: StudentModal): any {
-    return this.tutorialsRef.add({ ...StudentModal });
+
+  updatestudent(data:any) {
+    return this.firestore
+      .collection("students")
+      .doc(data.payload.doc.id)
+      .set({ completed: true }, { merge: true });
   }
 
-  updatestudent(id: string, data: any): Promise<void> {
-    return this.tutorialsRef.doc(id).update(data);
+  getstudent() {
+    return this.firestore.collection("students").snapshotChanges();
   }
 
-  deletestudent(id: string): Promise<void> {
-    return this.tutorialsRef.doc(id).delete();
+  deletestudent(data:any) {
+    return this.firestore
+      .collection("students")
+      .doc(data.payload.doc.id)
+      .delete();
   }
 }
