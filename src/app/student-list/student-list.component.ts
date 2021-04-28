@@ -25,6 +25,14 @@ export class StudentListComponent implements OnInit {
 
   deletedetail = (data:any) => this.studentService.deletestudent(data);
 
+openUpdaterecorde(student: any) {
+  this.studentService.form.patchValue({
+    name:student.name,
+    age:student.age,
+    address:student.address
+  })
+  console.log("data",student)
+}
   updatedetail = (data:any) => this.studentService.updatestudent(data);
 
 }
