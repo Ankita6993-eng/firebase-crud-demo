@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
