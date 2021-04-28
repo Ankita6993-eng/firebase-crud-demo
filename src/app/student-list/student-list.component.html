@@ -18,11 +18,13 @@
       <td>
         {{ list.payload.doc.data().address }}
       </td>
-      <td (click)="updatedetail(list)">
-       update
+      <td >
+      <button (click)="updatedetail(list)">
+       update</button>
       </td>
-      <td (click)="deletedetail(list)">
-        delete
+      <td>
+      <button (click)="deletedetail(list)">
+        delete</button>
       </td>
     </tr>
   </tbody>
