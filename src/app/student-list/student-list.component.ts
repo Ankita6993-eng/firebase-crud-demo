@@ -23,8 +23,8 @@ export class StudentListComponent implements OnInit {
       .getstudent()
       .subscribe((res:any) => (this.studentsdetail = res));
 
-  deleteOrder = (data:any) => this.studentService.deletestudent(data);
+  deletedetail = (data:any) => this.studentService.deletestudent(data);
 
-  markCompleted = (data:any) => this.studentService.updatestudent(data);
+  updatedetail = (data:any) => this.studentService.updatestudent(data);
 
 }
