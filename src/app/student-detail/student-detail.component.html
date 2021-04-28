@@ -1,20 +1,37 @@
 <h1>Student Register:</h1>
 
+<div class="main">
+<div class="box1">
 <form [formGroup]="this.studentService.form">
+<table border="2">
+<tr>
+<td>Name  ::</td>
+<td>
  <input
     placeholder="Student Name"
     formControlName="name"
     type="text"
     class="input-field col s12"
   />
+</td>
+  </tr>
 
+
+<tr>
+<td>Student age  ::</td>
+<td>
   <input
     placeholder="Student age"
     formControlName="age"
     type="text"
     class="input-field col s12"
   />
+  </td>
+  </tr>
 
+<tr>
+<td>Student Address  ::</td>
+<td>
   <input
     placeholder="Student address"
     formControlName="address"
@@ -22,10 +39,20 @@
     class="input-field col s12"
   />
 
-  <button class="waves-effect waves-light btn col s12" (click)="onSubmit()">
+  </td>
+  </tr>
+
+<tr>
+<td colspan="2">
+
+  <button style="margin:auto;display:block" (click)="onSubmit()">
     Submit
-  </button>
+  </button></td>
+  </tr>
+  </table>
 </form>
-
-
+</div>
+<div class="box2">
 <app-student-list></app-student-list>
+</div>
+</div>
