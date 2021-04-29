@@ -2,18 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { StudentModal } from './student-modal'
 import { FormControl, FormGroup } from "@angular/forms";
-
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
   studentForm: FormGroup|any;
 submitted = false;
-
-
-  constructor(private firestore: AngularFirestore) {
-
-   }
+  constructor(private firestore: AngularFirestore) {}
    form = new FormGroup({
     name: new FormControl(""),
     age: new FormControl(""),
@@ -27,18 +22,15 @@ submitted = false;
         .then(res => {}, err => reject(err));
     });
   }
-
   updatestudent(data:any) {
     return this.firestore
       .collection("students")
       .doc(data.payload.doc.id)
-      .set({ completed: true }, { merge: true });
+      .set({ merge: true });
   }
-
   getstudent() {
     return this.firestore.collection("students").snapshotChanges();
   }
-
   deletestudent(data:any) {
     return this.firestore
       .collection("students")

@@ -19,13 +19,17 @@
         {{ list.payload.doc.data().address }}
       </td>
       <td >
-      <button (click)="openUpdaterecorde(list.payload.doc.data())">
-       update</button>
+      <button (click)="openUpdaterecorde(list.payload.doc.data())" [id]="list.payload.doc.id">
+       update
+       </button>
       </td>
       <td>
       <button (click)="deletedetail(list)">
         delete</button>
       </td>
+      
     </tr>
   </tbody>
+
+
   </table>

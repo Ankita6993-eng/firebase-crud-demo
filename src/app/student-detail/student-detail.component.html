@@ -43,16 +43,19 @@
   </tr>
 
 <tr>
-<td colspan="2">
+<td>
 
   <button style="margin:auto;display:block" (click)="onSubmit()">
     Submit
-  </button></td>
+  </button><button (click)="child.update1()">
+    Update
+  </button>
+  </td>
   </tr>
   </table>
 </form>
 </div>
 <div class="box2">
-<app-student-list></app-student-list>
+<app-student-list #child></app-student-list>
 </div>
 </div>

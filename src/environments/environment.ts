@@ -10,8 +10,8 @@ export const environment = {
   projectId: "fire-abd68",
   storageBucket: "fire-abd68.appspot.com",
   messagingSenderId: "706056646764",
-  appId: "1:706056646764:web:a19683cc9fd0807eb0a849",
-  measurementId: "G-MW8RMVC4XL"
+  appId: "1:706056646764:web:f4bae9bf927229a6b0a849",
+  measurementId: "G-093Q9SVKE6"
   }
 };
 
