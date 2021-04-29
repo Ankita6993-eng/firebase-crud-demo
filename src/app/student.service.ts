@@ -26,15 +26,12 @@ submitted = false;
     return this.firestore
       .collection("students")
       .doc(data.payload.doc.id)
-      .set({ merge: true });
+      .set({ completed: true }, {merge: true });
   }
   getstudent() {
     return this.firestore.collection("students").snapshotChanges();
   }
-  deletestudent(data:any) {
-    return this.firestore
-      .collection("students")
-      .doc(data.payload.doc.id)
-      .delete();
+  deletestudent( record_id:any) {
+    this.firestore.doc('students/' + record_id).delete();
   }
 }

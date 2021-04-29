@@ -35,17 +35,15 @@ export class StudentListComponent implements OnInit {
   this.studentService.form.patchValue({
     name:student.name,
     age:student.age,
-    address:student.address  
-  })
-
-
-   this.firestore.collection('students').snapshotChanges().forEach((changes:any)=>{
+    address:student.address, 
+   id: this.firestore.collection('students').snapshotChanges().forEach((changes:any)=>{
      changes.map((a:any)=>{
-       let id=a.payload.doc.id
-       console.log(id)
+       this.id=a.payload.doc.id
+       console.log(this.id)
      })
-   })
-
+   }) 
+  })
+  
   // const index = this.firestore
   //     .collection("students")
   //     .doc(student.payload.doc.id)

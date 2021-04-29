@@ -47,7 +47,7 @@
 
   <button style="margin:auto;display:block" (click)="onSubmit()">
     Submit
-  </button><button (click)="child.update1()">
+  </button><button>
     Update
   </button>
   </td>
@@ -55,7 +55,49 @@
   </table>
 </form>
 </div>
+
+
+
 <div class="box2">
-<app-student-list #child></app-student-list>
+<table border="2">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Student Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>update</th>
+      <th>delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let list of students">
+    <td>
+        {{ list.id }}
+      </td>
+      <td>
+        {{ list.Name }}
+      </td>
+      <td>{{ list.Age }}</td>
+      <td>
+        {{ list.Address }}
+      </td>
+      <td >
+      <button (click)="openUpdaterecorde(list.payload.doc.data())">
+       update
+       </button>
+      </td>
+      <td>
+      <button (click)="deletedetail(list.id)">
+        delete</button>
+      </td>
+      
+    </tr>
+  </tbody>
+
+
+  </table>
+
 </div>
 </div>
