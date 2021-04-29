@@ -9,24 +9,12 @@ export class StudentService {
   studentForm: FormGroup|any;
 submitted = false;
   constructor(private firestore: AngularFirestore) {}
-   form = new FormGroup({
-    name: new FormControl(""),
-    age: new FormControl(""),
-    address: new FormControl("")
-  });
+   
  createstudent(data:any) {
-    return new Promise<any>((resolve, reject) => {
-      this.firestore
-        .collection("students")
-        .add(data)
-        .then(res => {}, err => reject(err));
-    });
+    return this.firestore.collection('students').add(data);
   }
-  updatestudent(data:any) {
-    return this.firestore
-      .collection("students")
-      .doc(data.payload.doc.id)
-      .set({ completed: true }, {merge: true });
+  updatestudent(recordID:any,record:any) {
+   this.firestore.doc('students/' + recordID).update(record);
   }
   getstudent() {
     return this.firestore.collection("students").snapshotChanges();

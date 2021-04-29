@@ -2,16 +2,16 @@
 
 <div class="main">
 <div class="box1">
-<form [formGroup]="this.studentService.form">
+
 <table border="2">
 <tr>
 <td>Student Name  </td>
 <td>
  <input
     placeholder="Student Name"
-    formControlName="name"
     type="text"
     class="input-field col s12"
+    [(ngModel)]="studentName"
   />
 </td>
   </tr>
@@ -22,9 +22,9 @@
 <td>
   <input
     placeholder="Student age"
-    formControlName="age"
     type="text"
     class="input-field col s12"
+    [(ngModel)]="studentAge"
   />
   </td>
   </tr>
@@ -34,70 +34,60 @@
 <td>
   <input
     placeholder="Student address"
-    formControlName="address"
     type="text"
     class="input-field col s12"
+    [(ngModel)]="studentAddress"
   />
 
   </td>
   </tr>
 
 <tr>
-<td>
+<td colspan="2"> 
 
-  <button style="margin:auto;display:block" (click)="onSubmit()">
+  <button style="margin:auto;display:block" (click)="CreateRecord()">
     Submit
-  </button><button>
-    Update
   </button>
   </td>
   </tr>
   </table>
-</form>
+
 </div>
 
 
 
 <div class="box2">
-<table border="2">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Student Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>update</th>
-      <th>delete</th>
-    </tr>
-  </thead>
+<div class="col-md-3">
+      <div class="card" style="width: 18rem;" *ngFor="let item of students">
+        <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
+          <h5 class="card-title">{{item.Name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Age: {{item.Age}} Years</h6>
+          <p class="card-text">Address: {{item.Address}}</p>
+          <a href="#" class="card-link" (click)="EditRecord(item)" >Edit</a>
+          <a href="#" class="card-link" (click)="deletedetail(item.id)">Delete</a>
+        </div>
+        <ng-template #elseBlock>
+          <div class="card-body">
+            <h5 class="card-title">Edit</h5>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditName" placeholder="Edit Name">
+                </div>
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditAge" placeholder="Edit Age">
+                </div>
+                <div class="col-md-12">
+                  <input type="text" class="form-control" [(ngModel)]="item.EditAddress" placeholder="Edit Address">
+                </div>
+              </div>
+            </div>
 
-  <tbody>
-    <tr *ngFor="let list of students">
-    <td>
-        {{ list.id }}
-      </td>
-      <td>
-        {{ list.Name }}
-      </td>
-      <td>{{ list.Age }}</td>
-      <td>
-        {{ list.Address }}
-      </td>
-      <td >
-      <button (click)="openUpdaterecorde(list.payload.doc.data())">
-       update
-       </button>
-      </td>
-      <td>
-      <button (click)="deletedetail(list.id)">
-        delete</button>
-      </td>
-      
-    </tr>
-  </tbody>
-
-
-  </table>
-
+            <a href="#" class="card-link" >Cancel</a>
+            <a href="#" class="card-link" (click)="UpdateRecord(item)" >Update</a>
+          </div>
+        </ng-template>
+      </div>
+    </div>
 </div>
 </div>

@@ -16,6 +16,11 @@ import { Observable, of } from 'rxjs'
 export class StudentDetailComponent implements OnInit {
 studentForm: FormGroup|any;
 submitted = false;
+studentdetail = [''];
+   students:any;
+ studentName: string|any;
+  studentAge: number|any;
+  studentAddress: string|any;
   constructor(public studentService: StudentService,public firestore: AngularFirestore) { }
 
   ngOnInit(): void {
@@ -25,54 +30,51 @@ submitted = false;
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          Name: e.payload.doc.data().name,
-          Age: e.payload.doc.data().age ,
-          Address: e.payload.doc.data().address,
+          Name: e.payload.doc.data().Name,
+          Age: e.payload.doc.data().Age ,
+          Address: e.payload.doc.data().Address,
         };
+        
       })
       console.log(this.students);
-
     });
   }
 
-  studentdetail = [''];
-   students:any;
-  exampleItems:any;
-  id:any
-   onSubmit() {
-    this.studentService.form.value.studentdetail = this.studentdetail;
-    let data = this.studentService.form.value;
-    console.log("data",data)
-    this.studentService.createstudent(data).then((res:any) => {
-      alert("Student Successfully created...")
-    });
+  
+  CreateRecord() {
+    let record:any = {};
+    record['Name'] = this.studentName;
+    record['Age'] = this.studentAge;
+    record['Address'] = this.studentAddress;
+    this.studentService.createstudent(record).then(resp => {
+      this.studentName = "";
+      this.studentAge = undefined;
+      this.studentAddress = "";
+      console.log(resp);
+    })
+      .catch(error => {
+        console.log(error);
+      });
   }
-
-  //deletedetail(data:any){ this.studentService.deletestudent(data);}
 
 deletedetail(rowID:any) {
     this.studentService.deletestudent(rowID);
   }
-  openUpdaterecorde(student: any) {
-  this.studentService.form.patchValue({
-    name:student.name,
-    age:student.age,
-    address:student.address, 
-   id: this.firestore.collection('students').snapshotChanges().forEach((changes:any)=>{
-     changes.map((a:any)=>{
-       this.id=a.payload.doc.id
-       console.log(this.id)
-     })
-   }) 
-  })
-}
-update1(){
-  console.log("data updated")
-} 
-getdata(){
+
+  EditRecord(record:any) {
+    record.isEdit = true;
+    record.EditName = record.Name;
+    record.EditAge = record.Age;
+    record.EditAddress = record.Address;
+  }
+
+  UpdateRecord(recordRow:any) {
+    let record:any = {};
+    record['Name'] = recordRow.EditName;
+    record['Age'] = recordRow.EditAge;
+    record['Address'] = recordRow.EditAddress;
+    this.studentService.updatestudent(recordRow.id, record);
+    recordRow.isEdit = false;
+  }
  
-}
-
-
-
 }

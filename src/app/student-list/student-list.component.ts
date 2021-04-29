@@ -32,17 +32,17 @@ export class StudentListComponent implements OnInit {
  racesCollection: AngularFirestoreCollection<any>;
 
   openUpdaterecorde(student: any) {
-  this.studentService.form.patchValue({
-    name:student.name,
-    age:student.age,
-    address:student.address, 
-   id: this.firestore.collection('students').snapshotChanges().forEach((changes:any)=>{
-     changes.map((a:any)=>{
-       this.id=a.payload.doc.id
-       console.log(this.id)
-     })
-   }) 
-  })
+  // this.studentService.form.patchValue({
+  //   name:student.name,
+  //   age:student.age,
+  //   address:student.address, 
+  //  id: this.firestore.collection('students').snapshotChanges().forEach((changes:any)=>{
+  //    changes.map((a:any)=>{
+  //      this.id=a.payload.doc.id
+  //      console.log(this.id)
+  //    })
+  //  }) 
+  // })
   
   // const index = this.firestore
   //     .collection("students")
