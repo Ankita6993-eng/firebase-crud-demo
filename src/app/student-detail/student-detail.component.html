@@ -45,7 +45,7 @@
 <tr>
 <td colspan="2"> 
 
-  <button style="margin:auto;display:block" (click)="CreateRecord()">
+  <button style="margin:auto;display:block" (click)="CreateRecord()" [disabled]="!studentName || !studentAge || !studentAddress" >
     Submit
   </button>
   </td>
